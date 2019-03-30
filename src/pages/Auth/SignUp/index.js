@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import logo from '../../../assets/logo.svg';
 
 import AuthActions from '../../../store/ducks/auth';
 
@@ -40,25 +41,26 @@ class SignUp extends Component {
     return (
       <Container>
         <SignForm onSubmit={this.handleSubmit}>
-          <h1>Criar conta</h1>
+          <img src={logo} alt="logo" />
+          <span>Nome</span>
+          <input name="name" value={name} onChange={this.handleInputChange} placeholder="Digite seu nome" />
 
-          <span>NOME</span>
-          <input name="name" value={name} onChange={this.handleInputChange} />
+          <span>Email</span>
+          <input type="email" name="email" value={email} onChange={this.handleInputChange} placeholder="Digite seu e-mail" />
 
-          <span>E-MAIL</span>
-          <input type="email" name="email" value={email} onChange={this.handleInputChange} />
-
-          <span>SENHA</span>
+          <span>Senha</span>
           <input
             type="password"
             name="password"
             value={password}
             onChange={this.handleInputChange}
+            placeholder="Sua senha secreta"
           />
 
           <Button size="big" type="submit">
             Criar
           </Button>
+          <h1>Já tenho conta</h1>
         </SignForm>
       </Container>
     );

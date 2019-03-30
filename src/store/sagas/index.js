@@ -1,7 +1,10 @@
-import { all, fork, takeLatest } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 
 import {
-  signIn, signOut, signUp, getPermissions,
+  signIn,
+  // signOut,
+  // signUp,
+  // getPermissions,
 } from './auth';
 import { AuthTypes } from '../ducks/auth';
 

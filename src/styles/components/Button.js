@@ -17,10 +17,10 @@ const sizes = {
 
 const colors = {
   default: css`
-    background: #7289da;
+    background: #e5556e;
 
     &:hover {
-      background: #5f73bc;
+      background: #e1405c;
     }
   `,
   danger: css`
@@ -45,12 +45,12 @@ const Button = styled.button.attrs({
 })`
   border-radius: 3px;
   transition: background-color 0.15s ease;
-  background: #7289da;
+  background: #e5556e;
   border: 0;
   color: #fff;
-  font-size: 12px;
+  font-size: 16px;
   padding: 0 10px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 700;
 
   ${props => sizes[props.size || 'default']}

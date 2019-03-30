@@ -9,7 +9,7 @@ export function* signIn({ email, password }) {
   try {
     const response = yield call(api.post, 'sessions', { email, password });
 
-    localStorage.setItem('@Omni:token', response.data.token);
+    localStorage.setItem('@Meetapp:token', response.data.token);
 
     yield put(AuthActions.signInSuccess(response.data.token));
     // yield put(push('/'));
@@ -25,9 +25,7 @@ export function* signIn({ email, password }) {
 }
 
 export function* signOut() {
-  localStorage.removeItem('@Omni:token');
-  localStorage.removeItem('@Omni:team');
-
+  // localStorage.removeItem('@Meetup:token');
   // yield put(push('/signin'));
 }
 

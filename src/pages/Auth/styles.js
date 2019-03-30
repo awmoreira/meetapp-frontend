@@ -3,54 +3,65 @@ import styled from 'styled-components';
 export const Container = styled.div`
   flex: 1;
   height: 100%;
-  background: #202225;
+  background: #1d2331;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const SignForm = styled.form`
-  background: #36393f;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  background: transparent;
   padding: 40px;
   width: 400px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 
-  h1 {
-    font-size: 26px;
-    font-weight: 500;
-    text-align: center;
-    margin: 0 0 10px;
+  img {
+    width: 40px;
+    height: 40px;
+    align-self: center;
+    margin-bottom: 15px;
   }
 
   span {
-    color: #b9bbbe;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 600;
+    color: #ffffff;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: bold;
     margin-top: 15px;
   }
 
   input {
     height: 40px;
-    padding: 10px;
+    padding: 0px;
     border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    background-color: rgba(0, 0, 0, 0.1);
+    border: 0;
+    background-color: #1d2331;
     color: #f6f6f6;
     margin-top: 8px;
     transition: border 0.15s ease;
-    font-size: 16px;
+    font-size: 20px;
 
     &:focus {
-      border-color: #7289da;
+      border-color: #e5556e;
     }
   }
 
   button {
     margin: 20px 0 0;
+    border-radius: 25px;
+    font-size: 16px;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 100;
+    opacity: 0.6;
+    color: #fff;
+    margin-top: 18px;
   }
 `;
