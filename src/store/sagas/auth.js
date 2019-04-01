@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-// import { push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { actions as toastrActions } from 'react-redux-toastr';
 import api from '../../services/api';
 
@@ -12,7 +12,7 @@ export function* signIn({ email, password }) {
     localStorage.setItem('@Meetapp:token', response.data.token);
 
     yield put(AuthActions.signInSuccess(response.data.token));
-    // yield put(push('/'));
+    yield put(push('/'));
   } catch (err) {
     yield put(
       toastrActions.add({
@@ -33,16 +33,16 @@ export function* signUp({ name, email, password }) {
   try {
     const response = yield call(api.post, 'users', { name, email, password });
 
-    localStorage.setItem('@Omni:token', response.data.token);
+    localStorage.setItem('@Meetapp:token', response.data.token);
 
     yield put(AuthActions.signInSuccess(response.data.token));
-    // yield put(push('/'));
+    yield put(push('/'));
   } catch (err) {
     yield put(
       toastrActions.add({
         type: 'error',
         title: 'Falha no cadastro',
-        message: 'Você foi convidado para algum time?',
+        message: 'Tente novamente mais tarde...',
       }),
     );
   }

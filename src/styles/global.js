@@ -1,9 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
+import Helvetica from '../assets/helvetica-bold.otf';
 
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+  @font-face {
+    font-family: 'PTC55F';
+    src: url(${Helvetica}) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
 
   * {
     padding: 0;
@@ -15,7 +21,7 @@ export default createGlobalStyle`
   body {
     background: #353940;
     color: #fff;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
   }
@@ -25,7 +31,7 @@ export default createGlobalStyle`
   }
 
   input, button {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Helvetica', sans-serif;
   }
 
   button {

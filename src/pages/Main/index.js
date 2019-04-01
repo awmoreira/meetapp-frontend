@@ -2,9 +2,11 @@ import React from 'react';
 
 import { Container } from './styles';
 
+import Header from '../../components/Header';
+
 const Main = () => (
   <Container>
-    <h1>Hello World</h1>
+    <Header />
   </Container>
 );
 

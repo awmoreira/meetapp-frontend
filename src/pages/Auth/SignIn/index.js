@@ -33,6 +33,8 @@ class SignIn extends Component {
     const { signInRequest } = this.props;
 
     signInRequest(email, password);
+
+    this.setState({ password: '' });
   };
 
   render() {

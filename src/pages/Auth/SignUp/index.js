@@ -43,10 +43,21 @@ class SignUp extends Component {
         <SignForm onSubmit={this.handleSubmit}>
           <img src={logo} alt="logo" />
           <span>Nome</span>
-          <input name="name" value={name} onChange={this.handleInputChange} placeholder="Digite seu nome" />
+          <input
+            name="name"
+            value={name}
+            onChange={this.handleInputChange}
+            placeholder="Digite seu nome"
+          />
 
           <span>Email</span>
-          <input type="email" name="email" value={email} onChange={this.handleInputChange} placeholder="Digite seu e-mail" />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleInputChange}
+            placeholder="Digite seu e-mail"
+          />
 
           <span>Senha</span>
           <input
