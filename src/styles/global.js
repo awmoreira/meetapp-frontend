@@ -19,7 +19,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #353940;
+    background: #1d2331;
     color: #fff;
     font-family: 'Helvetica', sans-serif;
     text-rendering: optimizeLegibility !important;
