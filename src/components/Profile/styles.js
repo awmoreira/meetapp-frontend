@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #1d2331;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 `;
 
 export const ProfileForm = styled.form`
@@ -13,6 +11,7 @@ export const ProfileForm = styled.form`
   width: 400px;
   display: flex;
   flex-direction: column;
+  align-self: center;
   align-items: stretch;
 
   img {

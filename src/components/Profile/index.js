@@ -9,6 +9,7 @@ import api from '../../services/api';
 
 import { Container, ProfileForm } from './styles';
 
+import Header from '../Header';
 import Button from '../../styles/components/Button';
 
 class Profile extends Component {
@@ -40,6 +41,16 @@ class Profile extends Component {
     });
   };
 
+  handleUpdateUser = (e) => {
+    e.preventDefault();
+
+    // const { updateUserRequest } = this.props;
+    // const { username, password, passwordConfirmation, preference } = this.state;
+
+    // updateUserRequest(this.state);
+    console.log('UPDATE');
+  };
+
   render() {
     const {
       name, password, passwordConfirmation, preference,
@@ -47,7 +58,8 @@ class Profile extends Component {
 
     return (
       <Container>
-        <ProfileForm>
+        <Header />
+        <ProfileForm onSubmit={this.handleUpdateUser}>
           <span>Nome</span>
           <input
             type="name"

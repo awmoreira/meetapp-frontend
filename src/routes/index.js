@@ -9,9 +9,8 @@ import Guest from './guest';
 
 import SignIn from '../pages/Auth/SignIn';
 import SignUp from '../pages/Auth/SignUp';
-import Meetup from '../pages/Meetup';
-import Search from '../components/Search';
-import NewMeetup from '../components/NewMeetup';
+import Main from '../pages/Main';
+import Preferences from '../pages/Preferences';
 import Profile from '../components/Profile';
 
 const Routes = () => (
@@ -19,9 +18,8 @@ const Routes = () => (
     <Switch>
       <Guest path="/signin" component={SignIn} />
       <Guest path="/signup" component={SignUp} />
-      <Private exact path="/" component={Meetup} />
-      <Private path="/search" component={Search} />
-      <Private path="/newMeetup" component={NewMeetup} />
+      <Private exact path="/" component={Main} />
+      <Private path="/preferences" component={Preferences} />
       <Private path="/profile" component={Profile} />
     </Switch>
   </ConnectedRouter>
