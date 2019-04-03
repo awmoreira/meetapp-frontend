@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #e5556e;
-  padding: 15px 10px;
 
   display: flex;
   align-items: center;
@@ -13,26 +12,28 @@ export const MenuList = styled.div`
   display: flex;
   align-items: center;
 
+  img {
+    width: 25px;
+    height: 25px;
+    margin: 15px 20px;
+  }
+
   a {
+    text-decoration: none;
     color: #fff;
     margin: 15px 20px;
     font-weight: bold;
     font-size: 16px;
-
-    img {
-      width: 25px;
-      height: 25px;
-    }
   }
 `;
 
 export const UserMenu = styled.div`
-  button {
+  a {
     background: transparent;
     border: 0;
-    /* font-size: 24px; */
-    /* color: #fff; */
     margin: 25px 30px;
+    text-decoration: none;
+
     img {
       width: 24px;
       height: 24px;

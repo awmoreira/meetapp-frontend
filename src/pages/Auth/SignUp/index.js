@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -71,7 +72,9 @@ class SignUp extends Component {
           <Button size="big" type="submit">
             Criar
           </Button>
-          <h1>Já tenho conta</h1>
+          <Link to="/signin">
+            <h1>Já tenho conta</h1>
+          </Link>
         </SignForm>
       </Container>
     );

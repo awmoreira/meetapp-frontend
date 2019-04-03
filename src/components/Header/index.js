@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import logoWhite from '../../assets/logo-white.svg';
-import userIcon from '../../assets/user-regular.svg';
+import userIcon from '../../assets/user-24.png';
 import { Container, MenuList, UserMenu } from './styles';
 
 export default class Header extends Component {
@@ -9,17 +10,15 @@ export default class Header extends Component {
     return (
       <Container>
         <MenuList>
-          <a href="#">
-            <img src={logoWhite} alt="logo white" />
-          </a>
-          <a href="#">Início</a>
-          <a href="#">Buscar</a>
-          <a href="#">Novo meetup</a>
+          <img src={logoWhite} alt="logo white" />
+          <Link to="/">Início</Link>
+          <Link to="/search">Buscar</Link>
+          <Link to="/newMeetup">Novo meetup</Link>
         </MenuList>
         <UserMenu>
-          <button>
+          <Link to="/profile">
             <img src={userIcon} alt="user Icon" />
-          </button>
+          </Link>
         </UserMenu>
       </Container>
     );

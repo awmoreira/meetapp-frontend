@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  flex: 1;
-  height: 100%;
   background: #1d2331;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const SignForm = styled.form`
+export const ProfileForm = styled.form`
   background: transparent;
   padding: 40px;
   width: 400px;
@@ -54,17 +52,29 @@ export const SignForm = styled.form`
     border-radius: 25px;
     font-size: 16px;
   }
-  a {
-    text-decoration: none;
 
-    h1 {
-      text-align: center;
-      font-family: Helvetica, sans-serif;
-      font-size: 16px;
-      font-weight: 100;
-      opacity: 0.6;
-      color: #fff;
-      margin-top: 18px;
+  ul {
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      input {
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 3px;
+        border: 0;
+        background-color: #1d2331;
+        color: #fff;
+        margin-top: 8px;
+        transition: border 0.15s ease;
+        font-size: 16px;
+
+        &:focus {
+          background: #e5556e;
+        }
+      }
     }
   }
 `;
