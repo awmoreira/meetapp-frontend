@@ -12,11 +12,9 @@ import { Container, ProfileForm } from './styles';
 import Button from '../../styles/components/Button';
 import Checkbox from '../Checkbox';
 
-class Profile extends Component {
+class Preferences extends Component {
   state = {
-    username: '',
-    password: '',
-    password_confirmation: '',
+    name: '',
     front: false,
     back: false,
     mobile: false,
@@ -31,7 +29,7 @@ class Profile extends Component {
     const { data: user } = response;
 
     this.setState({
-      username: user.username,
+      name: user.username,
       front: !!user.preference.front,
       back: !!user.preference.back,
       mobile: !!user.preference.mobile,
@@ -41,15 +39,6 @@ class Profile extends Component {
     });
   }
 
-  handleInputChange = (e) => {
-    const { target } = e;
-    const { value, name } = target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
   handleCheckboxChange = (e) => {
     this.setState({ [e.target.name]: e.target.checked });
   };
@@ -57,75 +46,27 @@ class Profile extends Component {
   handleUpdateUser = (e) => {
     e.preventDefault();
 
-    const { updateUserRequest } = this.props;
+    // const { updateUserRequest } = this.props;
+    // const { username, password, passwordConfirmation, preference } = this.state;
 
-    const arr = [];
-    const {
-      username,
-      password,
-      password_confirmation,
-      front,
-      back,
-      mobile,
-      devops,
-      manager,
-      marketing,
-    } = this.state;
-
-    arr.push({
-      front,
-      back,
-      mobile,
-      devops,
-      manager,
-      marketing,
-    });
-
-    updateUserRequest(username, password, password_confirmation, arr);
+    // updateUserRequest(this.state);
+    console.log('UPDATE');
   };
 
   render() {
     const {
-      username,
-      password,
-      password_confirmation,
-      front,
-      back,
-      mobile,
-      devops,
-      manager,
-      marketing,
+      name, front, back, mobile, devops, manager, marketing,
     } = this.state;
 
     return (
       <Container>
         <ProfileForm onSubmit={this.handleUpdateUser}>
-          <span>Nome</span>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleInputChange}
-            placeholder="Digite seu nome"
-          />
+          <h1>{`Olá, ${name}`}</h1>
 
-          <span>Senha</span>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleInputChange}
-            placeholder="Sua senha secreta"
-          />
-
-          <span>Confirmação de senha</span>
-          <input
-            type="password"
-            name="password_confirmation"
-            value={password_confirmation}
-            onChange={this.handleInputChange}
-            placeholder="Sua senha secreta"
-          />
+          <p>Parece que é seu primeiro acesso por aqui,</p>
+          <p>comece escolhendo algumas preferências</p>
+          <p>para selecionarmos os melhores meetups</p>
+          <p>pra você:</p>
 
           <span>Preferências</span>
           <ul>
@@ -172,7 +113,7 @@ class Profile extends Component {
           </ul>
 
           <Button size="big" type="submit">
-            Salvar
+            Continuar
           </Button>
         </ProfileForm>
       </Container>
@@ -189,4 +130,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch)
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Profile);
+)(Preferences);

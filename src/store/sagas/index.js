@@ -2,9 +2,9 @@ import { all, takeLatest } from 'redux-saga/effects';
 
 import {
   signIn,
+  updateUser,
   // signOut,
   // signUp,
-  // getPermissions,
 } from './auth';
 import { AuthTypes } from '../ducks/auth';
 
@@ -20,6 +20,7 @@ import { AuthTypes } from '../ducks/auth';
 export default function* rootSaga() {
   return yield all([
     takeLatest(AuthTypes.SIGN_IN_REQUEST, signIn),
+    takeLatest(AuthTypes.UPDATE_USER_REQUEST, updateUser),
     // takeLatest(AuthTypes.SIGN_OUT, signOut),
     // takeLatest(AuthTypes.SIGN_UP_REQUEST, signUp),
 

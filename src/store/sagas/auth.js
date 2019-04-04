@@ -1,4 +1,4 @@
-import { call, put, select } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { actions as toastrActions } from 'react-redux-toastr';
 import api from '../../services/api';
@@ -12,7 +12,13 @@ export function* signIn({ email, password }) {
     localStorage.setItem('@Meetapp:token', response.data.token);
 
     yield put(AuthActions.signInSuccess(response.data.token));
-    yield put(push('/'));
+
+    const user = yield call(api.get, 'users');
+    if (user.data.preference !== null) {
+      yield put(push('/'));
+    } else {
+      yield put(push('/preferences'));
+    }
   } catch (err) {
     yield put(
       toastrActions.add({
@@ -48,17 +54,32 @@ export function* signUp({ name, email, password }) {
   }
 }
 
-export function* getPermissions() {
-  const team = yield select(state => state.teams.active);
-  const signedIn = yield select(state => state.auth.signedIn);
+export function* updateUser({
+  username, password, password_confirmation, preference,
+}) {
+  try {
+    yield call(api.put, 'users', {
+      username,
+      password,
+      password_confirmation,
+      preference,
+    });
 
-  if (!signedIn || !team) {
-    return;
+    yield put(
+      toastrActions.add({
+        type: 'success',
+        title: 'Perfil',
+        message: 'Atualização realizada com sucesso!',
+      }),
+    );
+    yield put(push('/'));
+  } catch (err) {
+    yield put(
+      toastrActions.add({
+        type: 'error',
+        title: 'Falha na atualização',
+        message: 'Tente novamente mais tarde...',
+      }),
+    );
   }
-
-  const response = yield call(api.get, 'permissions');
-
-  const { roles, permissions } = response.data;
-
-  yield put(AuthActions.getPermissionsSuccess(roles, permissions));
 }

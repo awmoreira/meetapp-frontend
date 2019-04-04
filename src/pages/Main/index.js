@@ -2,13 +2,11 @@ import React from 'react';
 
 import { Container } from './styles';
 
-import Header from '../../components/Header';
-import Home from '../../components/Home';
+import Dashboard from '../../components/Dashboard';
 
 const Main = () => (
   <Container>
-    <Header />
-    <Home />
+    <Dashboard />
   </Container>
 );
 

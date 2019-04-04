@@ -4,7 +4,7 @@ import {
   Container, Box, MeetupsList, Meetup,
 } from './styles';
 
-export default class Home extends Component {
+export default class Dashboard extends Component {
   render() {
     return (
       <Container>

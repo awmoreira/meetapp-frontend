@@ -14,36 +14,29 @@ export const ProfileForm = styled.form`
   align-self: center;
   align-items: stretch;
 
-  img {
-    width: 40px;
-    height: 40px;
-    align-self: center;
-    margin-bottom: 15px;
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+
+  p {
+    opacity: 0.8;
+    font-family: Helvetica;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 28px;
+    text-align: left;
   }
 
   span {
-    color: #ffffff;
-    font-family: Helvetica, sans-serif;
-    font-size: 16px;
-    line-height: 18px;
+    margin-top: 30px;
+    font-family: Helvetica;
     font-weight: bold;
-    margin-top: 15px;
-  }
-
-  input {
-    height: 40px;
-    padding: 0px;
-    border-radius: 3px;
-    border: 0;
-    background-color: #1d2331;
-    color: #f6f6f6;
-    margin-top: 8px;
-    transition: border 0.15s ease;
     font-size: 16px;
-
-    &:focus {
-      border-color: #e5556e;
-    }
+    color: #ffffff;
+    text-align: left;
   }
 
   button {
