@@ -9,8 +9,10 @@ import {
   Container, MenuList, MenuItem, UserMenu,
 } from './styles';
 
-const Header = ({ auth, pathname }) => {
+const Header = ({ auth, pathname, history }) => {
+  // console.log(auth.signedIn, history.location.pathname, pathname);
   if (!auth.signedIn) return null;
+  if (pathname === '/signin') return null;
   if (pathname === '/preferences') return null;
   return (
     <Container>
@@ -34,8 +36,12 @@ Header.propTypes = {
   pathname: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-});
+const mapStateToProps = (state, ownProps) => {
+  const { pathname } = ownProps.history.location;
+  return {
+    auth: state.auth,
+    pathname,
+  };
+};
 
 export default connect(mapStateToProps)(Header);

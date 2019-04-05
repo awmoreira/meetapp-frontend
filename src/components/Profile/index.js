@@ -32,13 +32,18 @@ class Profile extends Component {
 
     this.setState({
       username: user.username,
-      front: !!user.preference.front,
-      back: !!user.preference.back,
-      mobile: !!user.preference.mobile,
-      devops: !!user.preference.devops,
-      manager: !!user.preference.manager,
-      marketing: !!user.preference.marketing,
     });
+
+    if (user.preference) {
+      this.setState({
+        front: !!user.preference.front,
+        back: !!user.preference.back,
+        mobile: !!user.preference.mobile,
+        devops: !!user.preference.devops,
+        manager: !!user.preference.manager,
+        marketing: !!user.preference.marketing,
+      });
+    }
   }
 
   handleInputChange = (e) => {
@@ -59,7 +64,6 @@ class Profile extends Component {
 
     const { updateUserRequest } = this.props;
 
-    const arr = [];
     const {
       username,
       password,
@@ -72,16 +76,16 @@ class Profile extends Component {
       marketing,
     } = this.state;
 
-    arr.push({
+    const preference = {
       front,
       back,
       mobile,
       devops,
       manager,
       marketing,
-    });
+    };
 
-    updateUserRequest(username, password, password_confirmation, arr);
+    updateUserRequest(username, password, password_confirmation, preference);
   };
 
   render() {
@@ -180,13 +184,13 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-});
+// const mapStateToProps = state => ({
+//   auth: state.auth,
+// });
 
 const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Profile);

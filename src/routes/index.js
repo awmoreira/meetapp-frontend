@@ -12,18 +12,24 @@ import SignUp from '../pages/Auth/SignUp';
 import Main from '../pages/Main';
 import Profile from '../components/Profile';
 import Preferences from '../components/Preferences';
+import Search from '../components/Search';
+import NewMeetup from '../components/NewMeetup';
+import Meetup from '../components/Meetup';
 
 import Header from '../components/Header';
 
 const Routes = () => (
   <ConnectedRouter history={history}>
-    <Header pathname={history.location.pathname} />
+    <Header history={history} />
     <Switch>
       <Guest path="/signin" component={SignIn} />
       <Guest path="/signup" component={SignUp} />
       <Private exact path="/" component={Main} />
       <Private path="/profile" component={Profile} />
       <Private path="/preferences" component={Preferences} />
+      <Private path="/search" component={Search} />
+      <Private path="/newMeetup" component={NewMeetup} />
+      <Private path="/meetup/:id" component={Meetup} />
     </Switch>
   </ConnectedRouter>
 );

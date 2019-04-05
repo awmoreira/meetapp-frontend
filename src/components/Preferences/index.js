@@ -14,7 +14,9 @@ import Checkbox from '../Checkbox';
 
 class Preferences extends Component {
   state = {
-    name: '',
+    username: '',
+    password: '',
+    password_confirmation: '',
     front: false,
     back: false,
     mobile: false,
@@ -29,14 +31,21 @@ class Preferences extends Component {
     const { data: user } = response;
 
     this.setState({
-      name: user.username,
-      front: !!user.preference.front,
-      back: !!user.preference.back,
-      mobile: !!user.preference.mobile,
-      devops: !!user.preference.devops,
-      manager: !!user.preference.manager,
-      marketing: !!user.preference.marketing,
+      username: user.username,
+      password: user.password,
+      password_confirmation: user.password,
     });
+
+    if (user.preference) {
+      this.setState({
+        front: !!user.preference.front,
+        back: !!user.preference.back,
+        mobile: !!user.preference.mobile,
+        devops: !!user.preference.devops,
+        manager: !!user.preference.manager,
+        marketing: !!user.preference.marketing,
+      });
+    }
   }
 
   handleCheckboxChange = (e) => {
@@ -46,22 +55,41 @@ class Preferences extends Component {
   handleUpdateUser = (e) => {
     e.preventDefault();
 
-    // const { updateUserRequest } = this.props;
-    // const { username, password, passwordConfirmation, preference } = this.state;
+    const { updateUserRequest } = this.props;
 
-    // updateUserRequest(this.state);
-    console.log('UPDATE');
+    const {
+      username,
+      password,
+      password_confirmation,
+      front,
+      back,
+      mobile,
+      devops,
+      manager,
+      marketing,
+    } = this.state;
+
+    const preference = {
+      front,
+      back,
+      mobile,
+      devops,
+      manager,
+      marketing,
+    };
+
+    updateUserRequest(username, password, password_confirmation, preference);
   };
 
   render() {
     const {
-      name, front, back, mobile, devops, manager, marketing,
+      username, front, back, mobile, devops, manager, marketing,
     } = this.state;
 
     return (
       <Container>
         <ProfileForm onSubmit={this.handleUpdateUser}>
-          <h1>{`Olá, ${name}`}</h1>
+          <h1>{`Olá, ${username}`}</h1>
 
           <p>Parece que é seu primeiro acesso por aqui,</p>
           <p>comece escolhendo algumas preferências</p>
@@ -121,13 +149,13 @@ class Preferences extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-});
+// const mapStateToProps = state => ({
+//   auth: state.auth,
+// });
 
 const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Preferences);
