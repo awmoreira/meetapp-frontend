@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 50px;
+  padding: 50px;
 `;
 
 export const Box = styled.div`
@@ -24,12 +26,14 @@ export const Box = styled.div`
 
 export const MeetupsList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style-type: none;
 `;
 
 export const Meetup = styled.li`
   background: #fff;
   margin-right: 20px;
+  margin-bottom: 20px;
   border: 0;
   border-radius: 5px;
 
@@ -41,7 +45,8 @@ export const Meetup = styled.li`
   div {
     display: flex;
     align-items: center;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 5px 10px;
 
     div {
       display: flex;
@@ -60,14 +65,25 @@ export const Meetup = styled.li`
         opacity: 0.6;
       }
     }
-    button {
-      width: 44px;
-      height: 44px;
-      margin-left: 40px;
-      background-color: #e5556e;
-      border: 0;
-      border-radius: 50%;
-      color: #fff;
-    }
+  }
+`;
+
+export const DetailsMeetup = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  width: 44px;
+  height: 44px;
+  margin-left: 40px;
+  background-color: #e5556e;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+
+  span {
+    color: #fff;
+    font-family: Helvetica;
   }
 `;

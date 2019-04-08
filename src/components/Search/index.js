@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-  Container, Box, MeetupsList, Meetup,
+  Container, SearchInput, Box, MeetupsList, Meetup,
 } from './styles';
 
 export default class Search extends Component {
@@ -21,13 +21,15 @@ export default class Search extends Component {
     return (
       <Container>
         <Box>
-          <input
-            type="text"
-            name="term"
-            value={term}
-            onChange={this.handleInputChange}
-            placeholder="Buscar meetups"
-          />
+          <SearchInput>
+            <input
+              type="text"
+              name="term"
+              value={term}
+              onChange={this.handleInputChange}
+              placeholder="Buscar meetups"
+            />
+          </SearchInput>
 
           <span>Inscrições</span>
           <MeetupsList>

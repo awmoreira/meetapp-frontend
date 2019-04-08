@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import SearchIcon from '../../assets/search.svg';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,30 +9,30 @@ export const Container = styled.div`
   padding-top: 50px;
 `;
 
+export const SearchInput = styled.div`
+  display: flex;
+  align-itens: center;
+  border-radius: 5px;
+  height: 40px;
+  width: 100%;
+  padding: 6px 7px 6px 26px;
+  background: #b9bbbe url(${SearchIcon}) no-repeat 7px center;
+
+  input {
+    flex: 1;
+    font-family: Helvetica;
+    font-size: 15px;
+    color: #8e8e93;
+    border: 0;
+    background: #b9bbbe;
+  }
+`;
+
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
   margin-bottom: 20px;
-
-  input {
-    font-family: Helvetica;
-    height: 40px;
-    width: 100%;
-    padding-left: 35px;
-    border-radius: 5px;
-    border: 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #8e8e93;
-    transition: border 0.15s ease;
-    font-size: 15px;
-    margin-bottom: 15px;
-    letter-spacing: 0;
-
-    &:focus {
-      border-color: #e5556e;
-    }
-  }
 
   span {
     font-size: 16px;
@@ -43,6 +45,7 @@ export const Box = styled.div`
 
 export const MeetupsList = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style-type: none;
 `;
 
