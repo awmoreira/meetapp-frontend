@@ -82,8 +82,8 @@ export const DetailsMeetup = styled(Link)`
   border-radius: 50%;
   color: #fff;
 
-  span {
-    color: #fff;
-    font-family: Helvetica;
+  img {
+    width: 24px;
+    height: 24px;
   }
 `;

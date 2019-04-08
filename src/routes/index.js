@@ -29,7 +29,7 @@ const Routes = () => (
       <Private path="/preferences" component={Preferences} />
       <Private path="/search" component={Search} />
       <Private path="/newMeetup" component={NewMeetup} />
-      <Private path="/meetup/:id" component={Meetup} />
+      <Private path="/meetups/:id" component={Meetup} />
     </Switch>
   </ConnectedRouter>
 );

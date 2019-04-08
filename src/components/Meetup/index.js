@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import { Container } from './styles';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ActionsMeetupDetails from '../../store/ducks/meetupDetails';
+
+import { Container, Info } from './styles';
 import Button from '../../styles/components/Button';
 
-const Meetup = () => (
-  <Container>
-    <img
-      alt="Meetup"
-      src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-    />
+class Meetup extends Component {
+  componentDidMount() {
+    this.loadMeetup();
+  }
 
-    <strong>Meetup React Native</strong>
-    <span>120 membros</span>
+  loadMeetup = () => {
+    const { id } = this.props.match.params;
+    const { getMeetupRequest } = this.props;
 
-    <p>
-      O meetup de React Native é um espaço para discutir sobre tecnologias por volta do
-      desenvolvimento web utilizando a biblioteca do Facebook para criação de interfaces móveis
-      multiplataforma com Javascript.
-    </p>
+    getMeetupRequest(id);
+  };
 
-    <span>Realizado em:</span>
-    <p>Rua Guilherme Gembalam, 260, Rio do Sul -SC</p>
+  render() {
+    const { meetup } = this.props;
 
-    <Button size="big" type="button" onClick={() => {}}>
-      Inscreva-se
-    </Button>
-  </Container>
-);
+    return (
+      <Container>
+        <img alt={meetup.title} src={`http://127.0.0.1:3333/files/${meetup.file_id}`} />
+        <Info>
+          <strong>{meetup.title}</strong>
+          <span>120 membros</span>
 
-export default Meetup;
+          <p>{meetup.description}</p>
+
+          <span>Realizado em:</span>
+          <p>{meetup.locale}</p>
+
+          <Button size="big" type="button" onClick={() => {}}>
+            Inscreva-se
+          </Button>
+        </Info>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  meetup: state.meetupDetails,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionsMeetupDetails, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Meetup);

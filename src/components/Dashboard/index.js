@@ -8,6 +8,7 @@ import MeetupsActions from '../../store/ducks/meetups';
 import {
   Container, Box, MeetupsList, Meetup, DetailsMeetup,
 } from './styles';
+import ArrowRight from '../../assets/right-arrow.svg';
 
 class Dashboard extends Component {
   static propTypes = {
@@ -46,8 +47,8 @@ class Dashboard extends Component {
                       <strong>{meetup.title}</strong>
                       <span>120 membros</span>
                     </div>
-                    <DetailsMeetup to={`/meetup/${meetup.id}`}>
-                      <span>></span>
+                    <DetailsMeetup to={`/meetups/${meetup.id}`}>
+                      <img alt="Right Arrow" src={ArrowRight} />
                     </DetailsMeetup>
                   </div>
                 </Meetup>
@@ -58,94 +59,42 @@ class Dashboard extends Component {
         <Box>
           <span>Próximos meetups</span>
           <MeetupsList>
-            <Meetup>
-              <img
-                alt="Meetup"
-                src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-              />
-              <div>
-                <div>
-                  <strong>Meetup React Native</strong>
-                  <span>120 membros</span>
-                </div>
-                <DetailsMeetup onClick={() => {}}>></DetailsMeetup>
-              </div>
-            </Meetup>
-
-            <Meetup>
-              <img
-                alt="Meetup"
-                src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-              />
-              <div>
-                <div>
-                  <strong>Meetup React Native</strong>
-                  <span>120 membros</span>
-                </div>
-                <DetailsMeetup onClick={() => {}}>></DetailsMeetup>
-              </div>
-            </Meetup>
-
-            <Meetup>
-              <img
-                alt="Meetup"
-                src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-              />
-              <div>
-                <div>
-                  <strong>Meetup React Native</strong>
-                  <span>120 membros</span>
-                </div>
-                <DetailsMeetup onClick={() => {}}>></DetailsMeetup>
-              </div>
-            </Meetup>
+            {meetups
+              && meetups.data.map(meetup => (
+                <Meetup key={meetup.id}>
+                  <img alt={meetup.title} src={`http://127.0.0.1:3333/files/${meetup.file_id}`} />
+                  <div>
+                    <div>
+                      <strong>{meetup.title}</strong>
+                      <span>120 membros</span>
+                    </div>
+                    <DetailsMeetup to={`/meetups/${meetup.id}`}>
+                      <img alt="Right Arrow" src={ArrowRight} />
+                    </DetailsMeetup>
+                  </div>
+                </Meetup>
+              ))}
           </MeetupsList>
         </Box>
 
         <Box>
           <span>Recomendados</span>
           <MeetupsList>
-            <Meetup>
-              <img
-                alt="Meetup"
-                src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-              />
-              <div>
-                <div>
-                  <strong>Meetup React Native</strong>
-                  <span>120 membros</span>
-                </div>
-                <DetailsMeetup onClick={() => {}}>></DetailsMeetup>
-              </div>
-            </Meetup>
-
-            <Meetup>
-              <img
-                alt="Meetup"
-                src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-              />
-              <div>
-                <div>
-                  <strong>Meetup React Native</strong>
-                  <span>120 membros</span>
-                </div>
-                <DetailsMeetup onClick={() => {}}>></DetailsMeetup>
-              </div>
-            </Meetup>
-
-            <Meetup>
-              <img
-                alt="Meetup"
-                src="https://secure.meetupstatic.com/s/img/7223371979728590/app_download/social/fb/meetup.en.png"
-              />
-              <div>
-                <div>
-                  <strong>Meetup React Native</strong>
-                  <span>120 membros</span>
-                </div>
-                <DetailsMeetup onClick={() => {}}>></DetailsMeetup>
-              </div>
-            </Meetup>
+            {meetups
+              && meetups.data.map(meetup => (
+                <Meetup key={meetup.id}>
+                  <img alt={meetup.title} src={`http://127.0.0.1:3333/files/${meetup.file_id}`} />
+                  <div>
+                    <div>
+                      <strong>{meetup.title}</strong>
+                      <span>120 membros</span>
+                    </div>
+                    <DetailsMeetup to={`/meetups/${meetup.id}`}>
+                      <img alt="Right Arrow" src={ArrowRight} />
+                    </DetailsMeetup>
+                  </div>
+                </Meetup>
+              ))}
           </MeetupsList>
         </Box>
       </Container>
@@ -153,12 +102,9 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    meetups: state.meetups,
-  };
-};
+const mapStateToProps = state => ({
+  meetups: state.meetups,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(MeetupsActions, dispatch);
 

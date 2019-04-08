@@ -21,10 +21,7 @@ export const INITIAL_STATE = Immutable({
 
 /* Reducers */
 
-export const getSuccess = (state, { data }) => {
-  console.log(data);
-  return state.merge({ data });
-};
+export const getSuccess = (state, { data }) => state.merge({ data });
 
 export const addSuccess = (state, { meetup }) => state.merge({ data: [...state.data, meetup] });
 

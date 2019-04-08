@@ -10,6 +10,8 @@ import { AuthTypes } from '../ducks/auth';
 
 import { getMeetups, addMeetup } from './meetups';
 import { MeetupsTypes } from '../ducks/meetups';
+import { getMeetup } from './meetupDetails';
+import { MeetupDetailsTypes } from '../ducks/meetupDetails';
 
 // import { getTeams, addTeam } from './teams';
 // import { TeamsTypes } from '../ducks/teams';
@@ -31,6 +33,7 @@ export default function* rootSaga() {
 
     takeLatest(MeetupsTypes.GET_MEETUPS_REQUEST, getMeetups),
     takeLatest(MeetupsTypes.ADD_MEETUP_REQUEST, addMeetup),
+    takeLatest(MeetupDetailsTypes.GET_MEETUP_REQUEST, getMeetup),
 
     // takeLatest(MembersTypes.GET_MEMBERS_REQUEST, getMembers),
     // takeLatest(MembersTypes.UPDATE_MEMBER_REQUEST, updateMember),
