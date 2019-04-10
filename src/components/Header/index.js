@@ -17,13 +17,13 @@ const Header = ({ auth, pathname, history }) => {
   return (
     <Container>
       <MenuList>
-        <img src={logoWhite} alt="logo white" />
+        <img src={logoWhite} alt="Logo white" />
         <MenuItem to="/">Início</MenuItem>
         <MenuItem to="/search">Buscar</MenuItem>
         <MenuItem to="/newMeetup">Novo meetup</MenuItem>
       </MenuList>
       <UserMenu to="/profile">
-        <img src={userIcon} alt="user Icon" />
+        <img src={userIcon} alt="User Icon" />
       </UserMenu>
     </Container>
   );

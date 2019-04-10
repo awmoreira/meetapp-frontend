@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { actions as toastrActions } from 'react-redux-toastr';
+import { push } from 'connected-react-router';
 import api from '../../services/api';
 
 import MeetupsActions from '../ducks/meetups';
@@ -10,9 +11,18 @@ export function* getMeetups() {
   yield put(MeetupsActions.getMeetupsSuccess(response.data.data));
 }
 
-export function* addMeetup({ title }) {
+export function* addMeetup({
+  title, description, preference, locale, date_event, file_id,
+}) {
   try {
-    const response = yield call(api.post, 'meetups', { title });
+    const response = yield call(api.post, 'meetups', {
+      title,
+      description,
+      preference,
+      locale,
+      date_event,
+      file_id,
+    });
 
     yield put(MeetupsActions.addMeetupSuccess(response.data));
     yield put(
@@ -22,6 +32,7 @@ export function* addMeetup({ title }) {
         message: 'Criado com sucesso.',
       }),
     );
+    yield put(push('/'));
   } catch (err) {
     yield put(
       toastrActions.add({

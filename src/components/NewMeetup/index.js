@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import { uniqueId } from 'lodash';
+import filesize from 'filesize';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import api from '../../services/api';
+import MeetupsActions from '../../store/ducks/meetups';
 
 import { Container, NewMeetupForm } from './styles';
 
 import Button from '../../styles/components/Button';
 import Checkbox from '../Checkbox';
+import ImageUploader from '../ImageUploader';
+import FileList from '../FileList';
 
 class NewMeetup extends Component {
   state = {
+    uploadedFiles: [],
+
     title: '',
     description: '',
     file_id: '',
     locale: '',
+    date_event: '',
 
     front: false,
     back: false,
@@ -18,6 +30,71 @@ class NewMeetup extends Component {
     devops: false,
     manager: false,
     marketing: false,
+  };
+
+  handleDelete = async (id) => {
+    await api.delete(`files/${id}`);
+    this.setState({
+      uploadedFiles: this.state.uploadedFiles.filter(file => file.id !== id),
+    });
+  };
+
+  updateFile = (id, data) => {
+    const { uploadedFiles } = this.state;
+    this.setState({
+      uploadedFiles: uploadedFiles.map(uploadedFile => (id === uploadedFile.id ? { ...uploadedFile, ...data } : uploadedFile)),
+    });
+  };
+
+  handleUpload = (files) => {
+    const uploadedFiles = files.map(file => ({
+      file,
+      id: uniqueId(),
+      name: file.name,
+      readableSize: filesize(file.size),
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      uploaded: false,
+      error: false,
+      url: null,
+    }));
+
+    this.setState({
+      uploadedFiles: this.state.uploadedFiles.concat(uploadedFiles),
+    });
+
+    uploadedFiles.forEach(this.processUpload);
+  };
+
+  processUpload = (uploadedFile) => {
+    const data = new FormData();
+    data.append('file', uploadedFile.file, uploadedFile.name);
+
+    api
+      .post('files', data, {
+        onUploadProgress: (e) => {
+          const progress = parseInt(Math.round((e.loaded * 100) / e.total));
+
+          this.updateFile(uploadedFile.id, {
+            progress,
+          });
+        },
+      })
+      .then((response) => {
+        this.updateFile(uploadedFile.id, {
+          uploaded: true,
+          id: response.data.id,
+          url: response.data.url,
+        });
+        this.setState({
+          file_id: response.data.id,
+        });
+      })
+      .catch(() => {
+        this.updateFile(uploadedFile.id, {
+          error: true,
+        });
+      });
   };
 
   handleInputChange = (e) => {
@@ -33,15 +110,42 @@ class NewMeetup extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    // call duck action addMeetupRequest
-  };
+    const { addMeetupRequest } = this.props;
 
-  render() {
     const {
       title,
       description,
       locale,
+      date_event,
       file_id,
+
+      front,
+      back,
+      mobile,
+      devops,
+      manager,
+      marketing,
+    } = this.state;
+
+    const preference = {
+      front,
+      back,
+      mobile,
+      devops,
+      manager,
+      marketing,
+    };
+
+    addMeetupRequest(title, description, preference, locale, date_event, file_id);
+  };
+
+  render() {
+    const {
+      uploadedFiles,
+      title,
+      description,
+      locale,
+      date_event,
 
       front,
       back,
@@ -71,7 +175,10 @@ class NewMeetup extends Component {
           />
 
           <span>Imagem</span>
-          {/* insert component for upload image */}
+          <ImageUploader onUpload={this.handleUpload} />
+          {!!uploadedFiles.length && (
+            <FileList files={uploadedFiles} onDelete={this.handleDelete} />
+          )}
 
           <span>Localização</span>
           <input
@@ -79,6 +186,14 @@ class NewMeetup extends Component {
             value={locale}
             onChange={this.handleInputChange}
             placeholder="Onde seu meetup irá acontecer?"
+          />
+
+          <span>Data do Evento</span>
+          <input
+            type="datetime-local"
+            name="date_event"
+            value={date_event}
+            onChange={this.handleInputChange}
           />
 
           <span>Preferências</span>
@@ -134,4 +249,9 @@ class NewMeetup extends Component {
   }
 }
 
-export default NewMeetup;
+const mapDispatchToProps = dispatch => bindActionCreators(MeetupsActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(NewMeetup);

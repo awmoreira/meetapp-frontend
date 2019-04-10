@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
 import SearchIcon from '../../assets/search.svg';
 
 export const Container = styled.div`
@@ -9,13 +10,31 @@ export const Container = styled.div`
   padding-top: 50px;
 `;
 
+export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 930px;
+
+  span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-align: left;
+    padding: 10px 0;
+  }
+`;
+
 export const SearchInput = styled.div`
   display: flex;
-  align-itens: center;
+  align-items: center;
   border-radius: 5px;
   height: 40px;
   width: 100%;
   padding: 6px 7px 6px 26px;
+  margin-bottom: 20px;
   background: #b9bbbe url(${SearchIcon}) no-repeat 7px center;
 
   input {
@@ -28,21 +47,6 @@ export const SearchInput = styled.div`
   }
 `;
 
-export const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  margin-bottom: 20px;
-
-  span {
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    text-align: left;
-    padding: 10px 0;
-  }
-`;
-
 export const MeetupsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -52,6 +56,7 @@ export const MeetupsList = styled.ul`
 export const Meetup = styled.li`
   background: #fff;
   margin-right: 20px;
+  margin-bottom: 20px;
   border: 0;
   border-radius: 5px;
 
@@ -63,7 +68,8 @@ export const Meetup = styled.li`
   div {
     display: flex;
     align-items: center;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 5px 10px;
 
     div {
       display: flex;
@@ -82,14 +88,25 @@ export const Meetup = styled.li`
         opacity: 0.6;
       }
     }
-    button {
-      width: 44px;
-      height: 44px;
-      margin-left: 40px;
-      background-color: #e5556e;
-      border: 0;
-      border-radius: 50%;
-      color: #fff;
-    }
+  }
+`;
+
+export const DetailsMeetup = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
+  width: 44px;
+  height: 44px;
+  margin-left: 40px;
+  background-color: #e5556e;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+
+  img {
+    width: 24px;
+    height: 24px;
   }
 `;

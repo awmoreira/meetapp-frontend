@@ -3,6 +3,7 @@ import { all, takeLatest } from 'redux-saga/effects';
 import {
   signIn,
   updateUser,
+  getUser,
   // signOut,
   // signUp,
 } from './auth';
@@ -13,30 +14,23 @@ import { MeetupsTypes } from '../ducks/meetups';
 import { getMeetup } from './meetupDetails';
 import { MeetupDetailsTypes } from '../ducks/meetupDetails';
 
-// import { getTeams, addTeam } from './teams';
-// import { TeamsTypes } from '../ducks/teams';
-
-// import { getMembers, updateMember, inviteMember } from './members';
-// import { MembersTypes } from '../ducks/members';
+import { getSubscriptions, addSubscription, deleteSubscription } from './subscriptions';
+import { SubscriptionsTypes } from '../ducks/subscriptions';
 
 export default function* rootSaga() {
   return yield all([
     takeLatest(AuthTypes.SIGN_IN_REQUEST, signIn),
     takeLatest(AuthTypes.UPDATE_USER_REQUEST, updateUser),
+    takeLatest(AuthTypes.GET_USER_REQUEST, getUser),
     // takeLatest(AuthTypes.SIGN_OUT, signOut),
     // takeLatest(AuthTypes.SIGN_UP_REQUEST, signUp),
-
-    // takeLatest(TeamsTypes.GET_TEAMS_REQUEST, getTeams),
-    // takeLatest(TeamsTypes.ADD_TEAM_REQUEST, addTeam),
-    // takeLatest(TeamsTypes.SELECT_TEAM, getProjects),
-    // takeLatest(TeamsTypes.SELECT_TEAM, getPermissions),
 
     takeLatest(MeetupsTypes.GET_MEETUPS_REQUEST, getMeetups),
     takeLatest(MeetupsTypes.ADD_MEETUP_REQUEST, addMeetup),
     takeLatest(MeetupDetailsTypes.GET_MEETUP_REQUEST, getMeetup),
 
-    // takeLatest(MembersTypes.GET_MEMBERS_REQUEST, getMembers),
-    // takeLatest(MembersTypes.UPDATE_MEMBER_REQUEST, updateMember),
-    // takeLatest(MembersTypes.INVITE_MEMBER_REQUEST, inviteMember),
+    takeLatest(SubscriptionsTypes.GET_SUBSCRIPTIONS_REQUEST, getSubscriptions),
+    takeLatest(SubscriptionsTypes.ADD_SUBSCRIPTION_REQUEST, addSubscription),
+    takeLatest(SubscriptionsTypes.DELETE_SUBSCRIPTION_REQUEST, deleteSubscription),
   ]);
 }

@@ -58,12 +58,19 @@ export function* updateUser({
   username, password, password_confirmation, preference,
 }) {
   try {
-    yield call(api.put, 'users', {
-      username,
-      password,
-      password_confirmation,
-      preference,
-    });
+    if (password !== '' && password_confirmation !== '') {
+      yield call(api.put, 'users', {
+        username,
+        password,
+        password_confirmation,
+        preference,
+      });
+    } else {
+      yield call(api.put, 'users', {
+        username,
+        preference,
+      });
+    }
 
     yield put(
       toastrActions.add({
@@ -82,4 +89,10 @@ export function* updateUser({
       }),
     );
   }
+}
+
+export function* getUser() {
+  const response = yield call(api.get, 'users');
+
+  yield put(AuthActions.getUserSuccess(response.data));
 }

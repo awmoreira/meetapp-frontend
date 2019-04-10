@@ -6,7 +6,8 @@ import Immutable from 'seamless-immutable';
 const { Types, Creators } = createActions({
   getMeetupsRequest: null,
   getMeetupsSuccess: ['data'],
-  addMeetupRequest: ['title'],
+  searchMeetupsRequest: ['term'],
+  addMeetupRequest: ['title', 'description', 'preference', 'locale', 'date_event', 'file_id'],
   addMeetupSuccess: ['meetup'],
 });
 
@@ -25,9 +26,14 @@ export const getSuccess = (state, { data }) => state.merge({ data });
 
 export const addSuccess = (state, { meetup }) => state.merge({ data: [...state.data, meetup] });
 
+export const searchRequest = (state, { term }) => state.merge({
+  data: state.data.filter(item => item.title.toLowerCase().search(term.toLowerCase()) !== -1),
+});
+
 /* Reducers to types */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_MEETUPS_SUCCESS]: getSuccess,
+  [Types.SEARCH_MEETUPS_REQUEST]: searchRequest,
   [Types.ADD_MEETUP_SUCCESS]: addSuccess,
 });

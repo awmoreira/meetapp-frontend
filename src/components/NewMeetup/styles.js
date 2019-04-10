@@ -15,13 +15,6 @@ export const NewMeetupForm = styled.form`
   align-self: center;
   align-items: stretch;
 
-  img {
-    width: 40px;
-    height: 40px;
-    align-self: center;
-    margin-bottom: 15px;
-  }
-
   span {
     color: #ffffff;
     font-family: Helvetica;
@@ -29,6 +22,7 @@ export const NewMeetupForm = styled.form`
     line-height: 18px;
     font-weight: bold;
     margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   input {
@@ -38,7 +32,6 @@ export const NewMeetupForm = styled.form`
     border: 0;
     background-color: #1d2331;
     color: #ffffff;
-    margin-top: 8px;
     transition: border 0.15s ease;
     font-size: 20px;
     opacity: 0.5;

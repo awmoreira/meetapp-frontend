@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+
 import Helvetica from '../assets/helvetica-bold.otf';
+
+import 'react-circular-progressbar/dist/styles.css';
 
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
@@ -31,7 +34,7 @@ export default createGlobalStyle`
   }
 
   input, button {
-    font-family: 'Helvetica', sans-serif;
+    font-family: Helvetica, sans-serif;
   }
 
   button {
