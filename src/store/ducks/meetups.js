@@ -4,8 +4,12 @@ import Immutable from 'seamless-immutable';
 /* Types & Action Creators */
 
 const { Types, Creators } = createActions({
-  getMeetupsRequest: null,
-  getMeetupsSuccess: ['data'],
+  getSubscriptionsRequest: null,
+  getSubscriptionsSuccess: ['data'],
+  getNextsRequest: null,
+  getNextsSuccess: ['data'],
+  getRecommendedRequest: null,
+  getRecommendedSuccess: ['data'],
   searchMeetupsRequest: ['term'],
   addMeetupRequest: ['title', 'description', 'preference', 'locale', 'date_event', 'file_id'],
   addMeetupSuccess: ['meetup'],
@@ -18,11 +22,20 @@ export default Creators;
 
 export const INITIAL_STATE = Immutable({
   data: [],
+  subscriptions: [],
+  nexts: [],
+  recommended: [],
 });
 
 /* Reducers */
 
-export const getSuccess = (state, { data }) => state.merge({ data });
+export const getSubSuccess = (state, { data }) => state.merge({ subscriptions: data });
+
+export const getNextSuccess = (state, { data }) => state.merge({ nexts: data });
+
+export const getRecommendedSuccess = (state, { data }) => state.merge({ recommended: data });
+
+// export const getSuccess = (state, { data }) => state.merge({ data });
 
 export const addSuccess = (state, { meetup }) => state.merge({ data: [...state.data, meetup] });
 
@@ -33,7 +46,10 @@ export const searchRequest = (state, { term }) => state.merge({
 /* Reducers to types */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.GET_MEETUPS_SUCCESS]: getSuccess,
+  [Types.GET_SUBSCRIPTIONS_SUCCESS]: getSubSuccess,
+  [Types.GET_NEXTS_SUCCESS]: getNextSuccess,
+  [Types.GET_RECOMMENDED_SUCCESS]: getRecommendedSuccess,
+  // [Types.GET_MEETUPS_SUCCESS]: getSuccess,
   [Types.SEARCH_MEETUPS_REQUEST]: searchRequest,
   [Types.ADD_MEETUP_SUCCESS]: addSuccess,
 });

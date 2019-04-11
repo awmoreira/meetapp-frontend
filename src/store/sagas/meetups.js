@@ -5,11 +5,29 @@ import api from '../../services/api';
 
 import MeetupsActions from '../ducks/meetups';
 
-export function* getMeetups() {
-  const response = yield call(api.get, 'meetups');
+export function* getSubs() {
+  const response = yield call(api.get, 'subs');
 
-  yield put(MeetupsActions.getMeetupsSuccess(response.data.data));
+  yield put(MeetupsActions.getSubscriptionsSuccess(response.data.data));
 }
+
+export function* getNexts() {
+  const response = yield call(api.get, 'nexts');
+
+  yield put(MeetupsActions.getNextsSuccess(response.data.data));
+}
+
+export function* getRecommended() {
+  const response = yield call(api.get, 'recommended');
+
+  yield put(MeetupsActions.getRecommendedSuccess(response.data.data));
+}
+
+// export function* getMeetups() {
+//   const response = yield call(api.get, 'meetups');
+
+//   yield put(MeetupsActions.getMeetupsSuccess(response.data.data));
+// }
 
 export function* addMeetup({
   title, description, preference, locale, date_event, file_id,

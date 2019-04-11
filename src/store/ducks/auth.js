@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
   signInRequest: ['email', 'password'],
   signInSuccess: ['token'],
   signOut: null,
-  signUpRequest: ['name', 'email', 'password'],
+  signUpRequest: ['username', 'email', 'password', 'password_confirmation'],
   updateUserRequest: ['username', 'password', 'password_confirmation', 'preference'],
   getUserRequest: null,
   getUserSuccess: ['user'],

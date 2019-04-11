@@ -17,9 +17,10 @@ class SignUp extends Component {
   };
 
   state = {
-    name: '',
+    username: '',
     email: '',
     password: '',
+    password_confirmation: '',
   };
 
   handleInputChange = (e) => {
@@ -31,22 +32,27 @@ class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const {
+      username, email, password, password_confirmation,
+    } = this.state;
     const { signUpRequest } = this.props;
 
-    signUpRequest(name, email, password);
+    signUpRequest(username, email, password, password_confirmation);
   };
 
   render() {
-    const { email, password, name } = this.state;
+    const {
+      email, password, password_confirmation, username,
+    } = this.state;
     return (
       <Container>
         <SignForm onSubmit={this.handleSubmit}>
           <img src={logo} alt="logo" />
+
           <span>Nome</span>
           <input
-            name="name"
-            value={name}
+            name="username"
+            value={username}
             onChange={this.handleInputChange}
             placeholder="Digite seu nome"
           />
@@ -65,6 +71,15 @@ class SignUp extends Component {
             type="password"
             name="password"
             value={password}
+            onChange={this.handleInputChange}
+            placeholder="Sua senha secreta"
+          />
+
+          <span>Confirmação de Senha</span>
+          <input
+            type="password"
+            name="password_confirmation"
+            value={password_confirmation}
             onChange={this.handleInputChange}
             placeholder="Sua senha secreta"
           />

@@ -3,13 +3,13 @@ import { push } from 'connected-react-router';
 import { actions as toastrActions } from 'react-redux-toastr';
 import api from '../../services/api';
 
-import SubscriptionsActions from '../ducks/subscriptions';
+// import SubscriptionsActions from '../ducks/subscriptions';
 
-export function* getSubscriptions({ meetup_id }) {
-  const response = yield call(api.get, `meetups/${meetup_id}/subscriptions`);
+// export function* getSubscriptions({ meetup_id }) {
+//   const response = yield call(api.get, `meetups/${meetup_id}/subscriptions`);
 
-  yield put(SubscriptionsActions.getSubscriptionsSuccess(response.data));
-}
+//   yield put(SubscriptionsActions.getSubscriptionsSuccess(response.data));
+// }
 
 export function* addSubscription({ meetup_id }) {
   try {
@@ -35,9 +35,9 @@ export function* addSubscription({ meetup_id }) {
   }
 }
 
-export function* deleteSubscription({ meetup_id, id }) {
+export function* deleteSubscription({ meetup_id }) {
   try {
-    yield call(api.delete, `meetups/${meetup_id}/subscriptions/${id}`);
+    yield call(api.delete, `meetups/${meetup_id}/subscriptions`);
 
     yield put(
       toastrActions.add({
@@ -47,7 +47,7 @@ export function* deleteSubscription({ meetup_id, id }) {
       }),
     );
 
-    // redirecionar para principal
+    yield put(push('/'));
   } catch (err) {
     yield put(
       toastrActions.add({
@@ -56,6 +56,5 @@ export function* deleteSubscription({ meetup_id, id }) {
         message: 'Ocorreu algum problema na comunicação, por favor tente mais tarde.',
       }),
     );
-    // redirecionar para a principal
   }
 }

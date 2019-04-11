@@ -13,8 +13,7 @@ export function* signIn({ email, password }) {
 
     yield put(AuthActions.signInSuccess(response.data.token));
 
-    const user = yield call(api.get, 'users');
-    if (user.data.preference !== null) {
+    if (response.data.preference) {
       yield put(push('/'));
     } else {
       yield put(push('/preferences'));
@@ -35,13 +34,24 @@ export function* signOut() {
   // yield put(push('/signin'));
 }
 
-export function* signUp({ name, email, password }) {
+export function* signUp({
+  username, email, password, password_confirmation,
+}) {
   try {
-    const response = yield call(api.post, 'users', { name, email, password });
+    yield call(api.post, 'users', {
+      username,
+      email,
+      password,
+      password_confirmation,
+    });
 
-    localStorage.setItem('@Meetapp:token', response.data.token);
-
-    yield put(AuthActions.signInSuccess(response.data.token));
+    yield put(
+      toastrActions.add({
+        type: 'success',
+        title: 'SignUp',
+        message: 'Cadastro realizado! Por favor faça seu login.',
+      }),
+    );
     yield put(push('/'));
   } catch (err) {
     yield put(
