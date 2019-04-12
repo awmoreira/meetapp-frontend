@@ -110,3 +110,21 @@ export const DetailsMeetup = styled(Link)`
     height: 24px;
   }
 `;
+
+export const Message = styled.div`
+  padding: 10px;
+  background: #67c58f;
+  box-shadow: 0 25px 10px -15px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+
+  span {
+    color: #fff;
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &:hover {
+    background: #1f8a4c;
+  }
+`;

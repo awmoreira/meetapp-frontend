@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import MeetupsActions from '../../store/ducks/meetups';
-import AuthActions from '../../store/ducks/auth';
 
 import {
-  Container, SearchInput, Box, MeetupsList, Meetup, DetailsMeetup,
+  Container, SearchInput, Box, MeetupsList, Meetup, DetailsMeetup, Message,
 } from './styles';
 
 import ArrowRight from '../../assets/right-arrow.svg';
@@ -71,8 +70,12 @@ class Search extends Component {
               placeholder="Buscar meetups"
             />
           </SearchInput>
-
           <span>Inscrições</span>
+          {subscriptions.length === 0 && (
+            <Message>
+              <span>Nenhuma inscrição realizada.</span>
+            </Message>
+          )}
           <MeetupsList>
             {subscriptions
               && subscriptions.map(meetup => (
@@ -98,6 +101,11 @@ class Search extends Component {
 
         <Box>
           <span>Próximos meetups</span>
+          {nexts.length === 0 && (
+            <Message>
+              <span>Não existe próximos meetups.</span>
+            </Message>
+          )}
           <MeetupsList>
             {nexts
               && nexts.map(meetup => (
@@ -123,6 +131,11 @@ class Search extends Component {
 
         <Box>
           <span>Recomendados</span>
+          {recommended.length === 0 && (
+            <Message>
+              <span>Escolha suas preferências de meetups.</span>
+            </Message>
+          )}
           <MeetupsList>
             {recommended
               && recommended.map(meetup => (
@@ -156,7 +169,7 @@ const mapStateToProps = state => ({
   recommended: state.meetups.recommended,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...MeetupsActions, ...AuthActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(MeetupsActions, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import MeetupsActions from '../../store/ducks/meetups';
 
 import {
-  Container, Box, MeetupsList, Meetup, DetailsMeetup,
+  Container, Box, MeetupsList, Meetup, DetailsMeetup, Message,
 } from './styles';
 import ArrowRight from '../../assets/right-arrow.svg';
 
@@ -41,6 +41,11 @@ class Dashboard extends Component {
       <Container>
         <Box>
           <span>Inscrições</span>
+          {subscriptions.length === 0 && (
+            <Message>
+              <span>Nenhuma inscrição realizada.</span>
+            </Message>
+          )}
           <MeetupsList>
             {subscriptions
               && subscriptions.map(meetup => (
@@ -66,6 +71,11 @@ class Dashboard extends Component {
 
         <Box>
           <span>Próximos meetups</span>
+          {nexts.length === 0 && (
+            <Message>
+              <span>Não existe próximos meetups.</span>
+            </Message>
+          )}
           <MeetupsList>
             {nexts
               && nexts.map(meetup => (
@@ -91,6 +101,11 @@ class Dashboard extends Component {
 
         <Box>
           <span>Recomendados</span>
+          {recommended.length === 0 && (
+            <Message>
+              <span>Escolha suas preferências de meetups.</span>
+            </Message>
+          )}
           <MeetupsList>
             {recommended
               && recommended.map(meetup => (
