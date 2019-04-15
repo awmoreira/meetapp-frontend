@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Dropzone from 'react-dropzone';
 
@@ -7,6 +8,12 @@ import { DropContainer, UploadMessage } from './styles';
 import ImageDropzone from '../../assets/image.svg';
 
 export default class ImageUploader extends Component {
+  static propTypes = {
+    isDragActive: PropTypes.bool.isRequired,
+    isDragReject: PropTypes.bool.isRequired,
+    onUpload: PropTypes.func.isRequired,
+  };
+
   renderDragMessage = (isDragActive, isDragReject) => {
     if (!isDragActive) {
       return (

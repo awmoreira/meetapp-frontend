@@ -16,16 +16,33 @@ class Search extends Component {
     getSubscriptionsRequest: PropTypes.func.isRequired,
     getNextsRequest: PropTypes.func.isRequired,
     getRecommendedRequest: PropTypes.func.isRequired,
-    searchMeetupsRequest: PropTypes.func.isRequired,
-    meetups: PropTypes.shape({
-      data: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number,
-          title: PropTypes.string,
-          file_id: PropTypes.number,
+    subscriptions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        __meta__: PropTypes.shape({
+          subscriptions_count: PropTypes.number,
         }),
-      ),
-    }).isRequired,
+      }),
+    ).isRequired,
+    nexts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        __meta__: PropTypes.shape({
+          subscriptions_count: PropTypes.number,
+        }),
+      }),
+    ).isRequired,
+    recommended: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        __meta__: PropTypes.shape({
+          subscriptions_count: PropTypes.number,
+        }),
+      }),
+    ).isRequired,
   };
 
   componentDidMount() {
@@ -39,19 +56,11 @@ class Search extends Component {
   }
 
   handleInputSearch = (e) => {
-    const {
-      searchMeetupsRequest,
-      getSubscriptionsRequest,
-      getNextsRequest,
-      getRecommendedRequest,
-    } = this.props;
-    if (e.target.value !== '') {
-      searchMeetupsRequest(e.target.value);
-    } else {
-      getSubscriptionsRequest();
-      getNextsRequest();
-      getRecommendedRequest();
-    }
+    const { getSubscriptionsRequest, getNextsRequest, getRecommendedRequest } = this.props;
+
+    getSubscriptionsRequest(e.target.value);
+    getNextsRequest(e.target.value);
+    getRecommendedRequest(e.target.value);
   };
 
   render() {
@@ -73,7 +82,7 @@ class Search extends Component {
           <span>Inscrições</span>
           {subscriptions.length === 0 && (
             <Message>
-              <span>Nenhuma inscrição realizada.</span>
+              <span>Não existe meetups relacionado.</span>
             </Message>
           )}
           <MeetupsList>
@@ -103,7 +112,7 @@ class Search extends Component {
           <span>Próximos meetups</span>
           {nexts.length === 0 && (
             <Message>
-              <span>Não existe próximos meetups.</span>
+              <span>Não existe meetups relacionado.</span>
             </Message>
           )}
           <MeetupsList>
@@ -133,7 +142,7 @@ class Search extends Component {
           <span>Recomendados</span>
           {recommended.length === 0 && (
             <Message>
-              <span>Escolha suas preferências de meetups.</span>
+              <span>Não existe meetups relacionado.</span>
             </Message>
           )}
           <MeetupsList>

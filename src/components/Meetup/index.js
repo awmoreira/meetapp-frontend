@@ -48,14 +48,6 @@ class Meetup extends Component {
     addSubscriptionRequest(meetup_id);
   };
 
-  handleCancelSubscription = () => {
-    const { match } = this.props;
-    const { id: meetup_id } = match.params;
-    const { deleteSubscriptionRequest } = this.props;
-
-    deleteSubscriptionRequest(meetup_id);
-  };
-
   render() {
     const { meetup } = this.props;
 

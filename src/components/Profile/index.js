@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,6 +13,10 @@ import Button from '../../styles/components/Button';
 import Checkbox from '../Checkbox';
 
 class Profile extends Component {
+  static propTypes = {
+    updateUserRequest: PropTypes.func.isRequired,
+  };
+
   state = {
     username: '',
     password: '',
@@ -183,10 +187,6 @@ class Profile extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   auth: state.auth,
-// });
 
 const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 

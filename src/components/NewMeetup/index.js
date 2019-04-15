@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import filesize from 'filesize';
 
@@ -15,6 +16,10 @@ import ImageUploader from '../ImageUploader';
 import FileList from '../FileList';
 
 class NewMeetup extends Component {
+  static propTypes = {
+    addMeetupRequest: PropTypes.func.isRequired,
+  };
+
   state = {
     uploadedFiles: [],
 

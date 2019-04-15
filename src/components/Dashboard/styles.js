@@ -42,6 +42,8 @@ export const Meetup = styled.li`
   img {
     height: 146px;
     width: 290px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 
   div {
@@ -92,18 +94,15 @@ export const DetailsMeetup = styled(Link)`
 
 export const Message = styled.div`
   padding: 10px;
-  background: #67c58f;
+  background-color: #d9edf7;
   box-shadow: 0 25px 10px -15px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
+  border-color: #bce8f1;
 
   span {
-    color: #fff;
+    color: #31708f;
     font-family: Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 400;
-  }
-
-  &:hover {
-    background: #1f8a4c;
   }
 `;

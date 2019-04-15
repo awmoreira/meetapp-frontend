@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CircularProgressbar from 'react-circular-progressbar';
 import { MdCheckCircle, MdError, MdLink } from 'react-icons/md';
 
@@ -46,5 +47,21 @@ const FileList = ({ files, onDelete }) => (
     ))}
   </Container>
 );
+
+FileList.propTypes = {
+  files: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      preview: PropTypes.string,
+      name: PropTypes.string,
+      readableSize: PropTypes.number,
+      url: PropTypes.string,
+      uploaded: PropTypes.string,
+      error: PropTypes.string,
+      progress: PropTypes.number,
+    }),
+  ).isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default FileList;

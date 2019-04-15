@@ -15,15 +15,33 @@ class Dashboard extends Component {
     getSubscriptionsRequest: PropTypes.func.isRequired,
     getNextsRequest: PropTypes.func.isRequired,
     getRecommendedRequest: PropTypes.func.isRequired,
-    meetups: PropTypes.shape({
-      data: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.number,
-          title: PropTypes.string,
-          file_id: PropTypes.number,
+    subscriptions: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        __meta__: PropTypes.shape({
+          subscriptions_count: PropTypes.number,
         }),
-      ),
-    }).isRequired,
+      }),
+    ).isRequired,
+    nexts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        __meta__: PropTypes.shape({
+          subscriptions_count: PropTypes.number,
+        }),
+      }),
+    ).isRequired,
+    recommended: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        __meta__: PropTypes.shape({
+          subscriptions_count: PropTypes.number,
+        }),
+      }),
+    ).isRequired,
   };
 
   componentDidMount() {
